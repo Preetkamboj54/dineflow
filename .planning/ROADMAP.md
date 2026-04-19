@@ -25,7 +25,7 @@ DineFlow v1.0 development is structured in 4 phases, starting from foundational 
 
 Plans:
 - [x] 01-01: Environment setup and database models
-- [x] 01-02: Authentication endpoints and security middleware
+- [ ] 01-02: Authentication endpoints and security middleware
 
 ### Phase 2: Customer Portal
 **Goal**: Build the core customer experience for browsing and ordering food.
@@ -77,7 +77,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation & Auth | 2/2 | Done | 2026-04-19 |
+| 1. Foundation & Auth | 1/2 | In progress | - |
 | 2. Customer Portal | 0/3 | Not started | - |
 | 3. Restaurant Dashboard | 0/2 | Not started | - |
 | 4. Admin Panel & Polish | 0/2 | Not started | - |
