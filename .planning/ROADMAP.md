@@ -6,7 +6,7 @@ DineFlow v1.0 development is structured in 4 phases, starting from foundational 
 
 ## Phases
 
-- [ ] **Phase 1: Foundation & Auth** - Initial setup, models, and authentication system
+- [x] **Phase 1: Foundation & Auth** - Initial setup, models, and authentication system
 - [ ] **Phase 2: Customer Portal** - Browsing, cart, orders, and reservations
 - [ ] **Phase 3: Restaurant Dashboard** - Menu management and live order tracking
 - [ ] **Phase 4: Admin Panel & Polish** - Admin management and final optimizations
@@ -21,11 +21,12 @@ DineFlow v1.0 development is structured in 4 phases, starting from foundational 
   1. Users can register as Customer, Restaurant, or Admin.
   2. Users can log in and receive a secure session token (JWT).
   3. API securely rejects unauthorized requests.
-**Plans**: 2 plans
+**Plans**: 3 plans
 
 Plans:
 - [x] 01-01: Environment setup and database models
-- [ ] 01-02: Authentication endpoints and security middleware
+- [x] 01-02: Authentication endpoints and security middleware
+- [x] 01-03-GAP-PLAN.md — Close authentication middleware gap (protected route)
 
 ### Phase 2: Customer Portal
 **Goal**: Build the core customer experience for browsing and ordering food.
@@ -77,7 +78,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation & Auth | 1/2 | In progress | - |
+| 1. Foundation & Auth | 3/3 | Complete | 2026-04-19 |
 | 2. Customer Portal | 0/3 | Not started | - |
 | 3. Restaurant Dashboard | 0/2 | Not started | - |
 | 4. Admin Panel & Polish | 0/2 | Not started | - |

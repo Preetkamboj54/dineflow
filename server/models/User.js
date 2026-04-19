@@ -3,32 +3,26 @@ const mongoose = require('mongoose');
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: [true, 'Please add a name'],
+    required: true
   },
   email: {
     type: String,
-    required: [true, 'Please add an email'],
-    unique: true,
-    match: [
-      /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-      'Please add a valid email',
-    ],
+    required: true,
+    unique: true
   },
   phoneNumber: {
     type: String,
-    required: [true, 'Please add a phone number'],
+    required: true
   },
   passwordHash: {
     type: String,
-    required: [true, 'Please add a password'],
+    required: true
   },
   role: {
     type: String,
     enum: ['customer', 'restaurant', 'admin'],
-    default: 'customer',
-  },
-}, {
-  timestamps: true,
-});
+    default: 'customer'
+  }
+}, { timestamps: true });
 
 module.exports = mongoose.model('User', userSchema);

@@ -8,9 +8,9 @@
 ### Authentication
 
 - [x] **AUTH-01**: User can register an account (Customer/Restaurant/Admin) with email and password
-- [ ] **AUTH-02**: User can log in and maintain a secure session (JWT)
-- [ ] **AUTH-03**: User passwords are securely hashed via bcrypt
-- [ ] **AUTH-04**: Role-based access control restricts API endpoints
+- [x] **AUTH-02**: User can log in and maintain a secure session (JWT)
+- [x] **AUTH-03**: User passwords are securely hashed via bcrypt
+- [x] **AUTH-04**: Role-based access control restricts API endpoints
 
 ### Customer Portal
 
@@ -60,9 +60,9 @@
 | Requirement | Phase | Status |
 |-------------|-------|--------|
 | AUTH-01 | Phase 1 | Completed |
-| AUTH-02 | Phase 1 | Pending |
-| AUTH-03 | Phase 1 | Pending |
-| AUTH-04 | Phase 1 | Pending |
+| AUTH-02 | Phase 1 | Completed |
+| AUTH-03 | Phase 1 | Completed |
+| AUTH-04 | Phase 1 | Completed |
 | CUST-01 | Phase 2 | Pending |
 | CUST-02 | Phase 2 | Pending |
 | CUST-03 | Phase 2 | Pending |
