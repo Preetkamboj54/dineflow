@@ -39,9 +39,9 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 02-01: Restaurant browsing and search UI/API
-- [ ] 02-02: Cart state management and checkout flow
-- [ ] 02-03: Table reservation system
+- [x] 02-01-PLAN.md — Restaurant browsing and search UI/API
+- [ ] 02-02-PLAN.md — Cart state management and checkout flow
+- [ ] 02-03-PLAN.md — Table reservation system
 
 ### Phase 3: Restaurant Dashboard
 **Goal**: Provide restaurants with tools to manage menus and handle incoming orders in real-time.
@@ -79,6 +79,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation & Auth | 3/3 | Complete | 2026-04-19 |
-| 2. Customer Portal | 0/3 | Not started | - |
+| 2. Customer Portal | 1/3 | In progress | - |
 | 3. Restaurant Dashboard | 0/2 | Not started | - |
 | 4. Admin Panel & Polish | 0/2 | Not started | - |

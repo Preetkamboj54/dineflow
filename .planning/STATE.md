@@ -10,8 +10,9 @@ See: .planning/PROJECT.md (updated 2026-04-19)
 ## Context
 
 - Phase 1 (Foundation & Auth) is complete, verified, and closed.
-- Phase 2 (Customer Portal) has not been started yet.
-- Next step is to run `/gsd-discuss-phase 2` to align on Phase 2 design.
+- Phase 2 (Customer Portal) is in progress.
+- Plan 02-01 (Restaurant browsing and search) is complete.
+- Next step is to run Plan 02-02 (Cart state management and checkout flow).
 
 ## Reminders
 - Remember to use the standard MERN stack with Socket.io.
