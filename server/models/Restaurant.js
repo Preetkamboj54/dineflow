@@ -31,9 +31,26 @@ const restaurantSchema = new mongoose.Schema({
     min: 0,
     max: 5,
   },
+  numReviews: {
+    type: Number,
+    default: 0,
+  },
+  capacity: {
+    type: Number,
+    default: 10,
+    min: 1,
+  },
   isOpen: {
     type: Boolean,
     default: true,
+  },
+  isApproved: {
+    type: Boolean,
+    default: false,
+  },
+  seatingOptions: {
+    type: [String],
+    default: ['Indoor', 'Outdoor', 'Window'],
   },
 }, { timestamps: true });
 

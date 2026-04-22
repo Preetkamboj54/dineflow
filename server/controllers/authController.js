@@ -1,4 +1,5 @@
 const User = require('../models/User');
+const Restaurant = require('../models/Restaurant');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
@@ -22,7 +23,19 @@ const registerUser = async (req, res) => {
       role: role || 'customer'
     });
 
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+    // If registering as a restaurant, create the restaurant profile
+    if (user.role === 'restaurant') {
+      await Restaurant.create({
+        _id: user._id, // Share the same ID for easy lookups in MVP
+        name: `${user.name}'s Kitchen`,
+        cuisine: 'General',
+        address: 'Please update your address',
+        phone: user.phoneNumber || '000-000-0000',
+        isOpen: true
+      });
+    }
+
+    const token = jwt.sign({ id: user._id, role: user.role, email: user.email }, process.env.JWT_SECRET, {
       expiresIn: '30d'
     });
 
@@ -45,7 +58,7 @@ const loginUser = async (req, res) => {
     const user = await User.findOne({ email });
 
     if (user && (await bcrypt.compare(password, user.passwordHash))) {
-      const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+      const token = jwt.sign({ id: user._id, role: user.role, email: user.email }, process.env.JWT_SECRET, {
         expiresIn: '30d'
       });
 

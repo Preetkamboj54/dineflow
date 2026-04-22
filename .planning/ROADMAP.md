@@ -7,9 +7,12 @@ DineFlow v1.0 development is structured in 4 phases, starting from foundational 
 ## Phases
 
 - [x] **Phase 1: Foundation & Auth** - Initial setup, models, and authentication system
-- [ ] **Phase 2: Customer Portal** - Browsing, cart, orders, and reservations
-- [ ] **Phase 3: Restaurant Dashboard** - Menu management and live order tracking
-- [ ] **Phase 4: Admin Panel & Polish** - Admin management and final optimizations
+- [x] **Phase 2: Customer Portal** - Browsing, cart, orders, and reservations
+- [x] **Phase 3: Restaurant Dashboard** - Menu management and live order tracking
+- [x] **Phase 4: Admin Panel & Polish** - Admin management and final optimizations
+- [x] **Phase 5: Image & Profile Polish** - Support for external image URLs and profile editing
+- [x] **Phase 6: Advanced Table Management** - Status flow, seating preferences, and user visibility
+- [ ] **Phase 7: Rating & Review System** - Order and dish-wise ratings with average calculations
 
 ## Phase Details
 
@@ -40,8 +43,8 @@ Plans:
 
 Plans:
 - [x] 02-01-PLAN.md — Restaurant browsing and search UI/API
-- [ ] 02-02-PLAN.md — Cart state management and checkout flow
-- [ ] 02-03-PLAN.md — Table reservation system
+- [x] 02-02-PLAN.md — Cart state management and checkout flow
+- [x] 02-03-PLAN.md — Table reservation system
 
 ### Phase 3: Restaurant Dashboard
 **Goal**: Provide restaurants with tools to manage menus and handle incoming orders in real-time.
@@ -54,8 +57,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 03-01: Menu and reservation management endpoints and UI
-- [ ] 03-02: Socket.io integration for real-time order queue
+- [x] 03-01: Menu and reservation management endpoints and UI
+- [x] 03-02: Socket.io integration for real-time order queue
 
 ### Phase 4: Admin Panel & Polish
 **Goal**: Give platform administrators oversight and finalize application readiness.
@@ -68,8 +71,31 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 04-01: Admin dashboard and management APIs
-- [ ] 04-02: Final UI polish, responsiveness, and performance review
+- [x] 04-01: Admin dashboard and management APIs
+- [x] 04-02: Final UI polish, responsiveness, and performance review
+
+### Phase 5: Image & Profile Polish
+**Goal**: Support external image URLs and profile editing for restaurants.
+**Depends on**: Phase 4
+**Success Criteria**:
+  1. Restaurants can update their profile details and image URLs.
+  2. Menu items support dynamic image URLs.
+
+### Phase 6: Advanced Table Management
+**Goal**: Refine the reservation system with status workflows and seating options.
+**Depends on**: Phase 2
+**Success Criteria**:
+  1. Restaurant can confirm/decline reservations.
+  2. Customers can see their reservation status.
+  3. Seating preferences (Indoor/Outdoor) are supported.
+
+### Phase 7: Rating & Review System
+**Goal**: Implement a feedback loop for food quality and restaurant service.
+**Depends on**: Phase 2 (Orders)
+**Success Criteria**:
+  1. Customers can rate completed orders and individual dishes.
+  2. Restaurant average ratings are calculated automatically.
+  3. Dish-wise ratings are displayed on the menu.
 
 ## Progress
 
@@ -79,6 +105,9 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation & Auth | 3/3 | Complete | 2026-04-19 |
-| 2. Customer Portal | 1/3 | In progress | - |
-| 3. Restaurant Dashboard | 0/2 | Not started | - |
-| 4. Admin Panel & Polish | 0/2 | Not started | - |
+| 2. Customer Portal | 3/3 | Complete | 2026-04-22 |
+| 3. Restaurant Dashboard | 2/2 | Complete | 2026-04-22 |
+| 4. Admin Panel & Polish | 2/2 | Complete | 2026-04-22 |
+| 5. Image & Profile Polish | 1/1 | Complete | 2026-04-22 |
+| 6. Advanced Table Management | 1/1 | Complete | 2026-04-23 |
+| 7. Rating & Review System | 0/1 | In Progress | - |

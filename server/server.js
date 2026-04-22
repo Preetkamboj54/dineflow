@@ -1,29 +1,25 @@
-const express = require('express');
-const dotenv = require('dotenv');
-const cors = require('cors');
-const connectDB = require('./config/db');
-
-// Load env vars
-dotenv.config();
-
-// Connect to database
-connectDB();
-
-const app = express();
-
-// Middleware
-app.use(cors());
-app.use(express.json());
-
-// Routes
-const authRoutes = require('./routes/authRoutes');
-app.use('/api/auth', authRoutes);
-
-const restaurantRoutes = require('./routes/restaurantRoutes');
-app.use('/api/restaurants', restaurantRoutes);
+const app = require('./app');
+const http = require('http');
+const { Server } = require('socket.io');
+const setupSocket = require('./sockets/orderSocket');
+const User = require('./models/User');
+const bcrypt = require('bcryptjs');
+const mongoose = require('mongoose');
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
+const server = http.createServer(app);
+
+const io = new Server(server, {
+  cors: {
+    origin: '*', 
+    methods: ['GET', 'POST']
+  }
+});
+
+setupSocket(io);
+app.set('io', io);
+
+server.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
