@@ -13,6 +13,7 @@ DineFlow v1.0 development is structured in 4 phases, starting from foundational 
 - [x] **Phase 5: Image & Profile Polish** - Support for external image URLs and profile editing
 - [x] **Phase 6: Advanced Table Management** - Status flow, seating preferences, and user visibility
 - [ ] **Phase 7: Rating & Review System** - Order and dish-wise ratings with average calculations
+- [ ] **Phase 8: User Address & Profile Management** - Multi-address support and comprehensive profile editing
 
 ## Phase Details
 
@@ -97,6 +98,14 @@ Plans:
   2. Restaurant average ratings are calculated automatically.
   3. Dish-wise ratings are displayed on the menu.
 
+### Phase 8: User Address & Profile Management
+**Goal**: Enhance user profiles with multi-address support and comprehensive personal information management.
+**Depends on**: Phase 2 (Customer Portal/Checkout)
+**Success Criteria**:
+  1. User can add, edit, and delete multiple delivery addresses in their profile.
+  2. At checkout, users can select from their saved addresses or add a one-time address.
+  3. Profile page allows updating name, mobile number, and email.
+
 ## Progress
 
 **Execution Order:**
@@ -111,3 +120,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | 5. Image & Profile Polish | 1/1 | Complete | 2026-04-22 |
 | 6. Advanced Table Management | 1/1 | Complete | 2026-04-23 |
 | 7. Rating & Review System | 0/1 | In Progress | - |
+| 8. User Address & Profile Management | 0/1 | Planned | - |

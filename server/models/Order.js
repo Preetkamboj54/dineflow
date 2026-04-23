@@ -33,6 +33,13 @@ const orderSchema = new mongoose.Schema({
     enum: ['Pending', 'Preparing', 'Ready', 'Completed', 'Cancelled'],
     default: 'Pending',
   },
+  deliveryAddress: {
+    label: String,
+    street: { type: String, required: true },
+    city: { type: String, required: true },
+    state: { type: String, required: true },
+    zipCode: { type: String, required: true },
+  }
 }, { timestamps: true });
 
 module.exports = mongoose.model('Order', orderSchema);

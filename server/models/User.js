@@ -22,7 +22,15 @@ const userSchema = new mongoose.Schema({
     type: String,
     enum: ['customer', 'restaurant', 'admin'],
     default: 'customer'
-  }
+  },
+  addresses: [{
+    label: { type: String, default: 'Home' }, // Home, Work, etc.
+    street: { type: String, required: true },
+    city: { type: String, required: true },
+    state: { type: String, required: true },
+    zipCode: { type: String, required: true },
+    isDefault: { type: Boolean, default: false }
+  }]
 }, { timestamps: true });
 
 module.exports = mongoose.model('User', userSchema);

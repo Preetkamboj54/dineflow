@@ -5,7 +5,7 @@ const MenuItem = require('../models/MenuItem');
 exports.createOrder = async (req, res) => {
   try {
     console.log('CreateOrder Request Body:', req.body);
-    const { restaurantId, items, paymentMethod } = req.body;
+    const { restaurantId, items, paymentMethod, deliveryAddress } = req.body;
 
     if (!restaurantId || !items || !Array.isArray(items) || items.length === 0) {
       console.log('Validation Failed: Missing restaurantId or items');
@@ -17,6 +17,11 @@ exports.createOrder = async (req, res) => {
       return res.status(400).json({ message: 'Payment method is required' });
     }
 
+    if (!deliveryAddress) {
+      console.log('Validation Failed: Delivery address is required');
+      return res.status(400).json({ message: 'Delivery address is required' });
+    }
+    
     let totalAmount = 0;
     const orderItemsData = [];
 
@@ -47,6 +52,7 @@ exports.createOrder = async (req, res) => {
       restaurantId,
       totalAmount,
       paymentMethod,
+      deliveryAddress,
       status: 'Pending'
     });
 

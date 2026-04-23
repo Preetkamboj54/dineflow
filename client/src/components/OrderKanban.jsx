@@ -33,7 +33,7 @@ const OrderKanban = ({ restaurantId }) => {
 
     socket.on('new_order', (newOrder) => {
       setOrders(prev => [newOrder, ...prev]);
-      
+
       // Trigger browser notification
       if ('Notification' in window && Notification.permission === 'granted') {
         new Notification('New Order Received!', {
@@ -75,20 +75,32 @@ const OrderKanban = ({ restaurantId }) => {
               {orders.filter(o => o.status === status).length}
             </span>
           </div>
-          
+
           <div className="flex-1 overflow-y-auto space-y-3 pr-1">
             {orders.filter(o => o.status === status).map(order => (
               <div key={order._id} className="bg-white p-3 rounded shadow-sm border border-gray-200">
                 <div className="flex justify-between items-start mb-2">
                   <span className="font-medium text-sm truncate">#{order._id.substring(order._id.length - 6)}</span>
-                  <span className="font-bold text-green-600">${order.totalAmount}</span>
+                  <span className="font-bold text-green-600">₹{order.totalAmount}</span>
                 </div>
-                
+
                 <div className="text-sm text-gray-600 mb-2">
-                  <p className="font-medium text-gray-800">{order.userId?.name}</p>
-                  <p className="text-xs">{new Date(order.createdAt).toLocaleTimeString()}</p>
+                  <p className="font-bold text-gray-900">{order.userId?.name}</p>
+                  <p className="text-[10px] text-primary font-medium">{order.userId?.phoneNumber}</p>
+                  <p className="text-[10px] opacity-60 italic">{new Date(order.createdAt).toLocaleTimeString()}</p>
                 </div>
-                
+
+                {order.deliveryAddress && (
+                  <div className="text-[10px] bg-indigo-50 text-indigo-700 p-2 rounded-lg mb-2 border border-indigo-100">
+                    <p className="font-bold flex items-center gap-1">
+                      {order.deliveryAddress.label}
+                    </p>
+                    <p className="truncate">
+                      {order.deliveryAddress.street}, {order.deliveryAddress.city}
+                    </p>
+                  </div>
+                )}
+
                 <div className="text-xs space-y-1 mb-3 bg-gray-50 p-2 rounded">
                   {order.items.map((item, idx) => (
                     <div key={idx} className="flex justify-between">
@@ -96,7 +108,7 @@ const OrderKanban = ({ restaurantId }) => {
                     </div>
                   ))}
                 </div>
-                
+
                 {status !== 'Completed' && (
                   <div className="flex space-x-2 mt-2">
                     {status === 'Pending' && (

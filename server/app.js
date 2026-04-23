@@ -42,6 +42,9 @@ app.use('/api/admin', adminRoutes);
 const reviewRoutes = require('./routes/reviewRoutes');
 app.use('/api/reviews', reviewRoutes);
 
+const userRoutes = require('./routes/userRoutes');
+app.use('/api/users', userRoutes);
+
 // 404 Handler
 app.use((req, res) => {
   console.log(`404 Not Found: ${req.url}`);

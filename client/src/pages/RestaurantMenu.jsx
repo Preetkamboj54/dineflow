@@ -83,7 +83,7 @@ const RestaurantMenu = () => {
                             </div>
                           )}
                         </div>
-                        <span className="text-primary font-black whitespace-nowrap">${item.price.toFixed(2)}</span>
+                        <span className="text-primary font-black whitespace-nowrap">₹{item.price.toFixed(2)}</span>
                       </div>
                       <p className="text-sm text-muted mb-4 line-clamp-2 leading-relaxed">{item.description}</p>
                       <button 

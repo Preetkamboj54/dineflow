@@ -9,6 +9,7 @@ import Reservation from './pages/Reservation';
 import RestaurantDashboard from './pages/RestaurantDashboard';
 import AdminDashboard from './pages/AdminDashboard';
 import MyReservations from './pages/MyReservations';
+import Profile from './pages/Profile';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import { useNavigate, Link, Navigate, useLocation } from 'react-router-dom';
@@ -73,10 +74,11 @@ function App() {
           <nav className="nav-links">
             {isLoggedIn ? (
               <>
-                {(role === 'user' || role === 'admin') && (
+                {(role === 'customer' || role === 'admin') && (
                   <>
                     <Link to="/order-history">Orders</Link>
                     <Link to="/my-reservations">Reservations</Link>
+                    <Link to="/profile">Profile</Link>
                   </>
                 )}
                 {role === 'restaurant' && <Link to="/dashboard">Merchant Dashboard</Link>}
@@ -100,22 +102,25 @@ function App() {
           <Route path="/register" element={<Register />} />
           
           <Route path="/restaurant/:id" element={
-            <ProtectedRoute allowedRoles={['user', 'admin']} currentRole={role} isLoggedIn={isLoggedIn}><RestaurantMenu /></ProtectedRoute>
+            <ProtectedRoute allowedRoles={['customer', 'admin']} currentRole={role} isLoggedIn={isLoggedIn}><RestaurantMenu /></ProtectedRoute>
           } />
           <Route path="/cart" element={
-            <ProtectedRoute allowedRoles={['user', 'admin']} currentRole={role} isLoggedIn={isLoggedIn}><Cart /></ProtectedRoute>
+            <ProtectedRoute allowedRoles={['customer', 'admin']} currentRole={role} isLoggedIn={isLoggedIn}><Cart /></ProtectedRoute>
           } />
           <Route path="/checkout" element={
-            <ProtectedRoute allowedRoles={['user', 'admin']} currentRole={role} isLoggedIn={isLoggedIn}><Checkout /></ProtectedRoute>
+            <ProtectedRoute allowedRoles={['customer', 'admin']} currentRole={role} isLoggedIn={isLoggedIn}><Checkout /></ProtectedRoute>
           } />
           <Route path="/order-history" element={
-            <ProtectedRoute allowedRoles={['user', 'admin']} currentRole={role} isLoggedIn={isLoggedIn}><OrderHistory /></ProtectedRoute>
+            <ProtectedRoute allowedRoles={['customer', 'admin']} currentRole={role} isLoggedIn={isLoggedIn}><OrderHistory /></ProtectedRoute>
           } />
           <Route path="/my-reservations" element={
-            <ProtectedRoute allowedRoles={['user', 'admin']} currentRole={role} isLoggedIn={isLoggedIn}><MyReservations /></ProtectedRoute>
+            <ProtectedRoute allowedRoles={['customer', 'admin']} currentRole={role} isLoggedIn={isLoggedIn}><MyReservations /></ProtectedRoute>
           } />
           <Route path="/reservation/:id" element={
-            <ProtectedRoute allowedRoles={['user', 'admin']} currentRole={role} isLoggedIn={isLoggedIn}><Reservation /></ProtectedRoute>
+            <ProtectedRoute allowedRoles={['customer', 'admin']} currentRole={role} isLoggedIn={isLoggedIn}><Reservation /></ProtectedRoute>
+          } />
+          <Route path="/profile" element={
+            <ProtectedRoute allowedRoles={['customer', 'admin']} currentRole={role} isLoggedIn={isLoggedIn}><Profile /></ProtectedRoute>
           } />
 
           {/* Restaurant Routes */}
