@@ -41,45 +41,108 @@ const RestaurantDashboard = () => {
     }
   }, [user]);
 
-  if (loading) return <div className="container p-8 text-center">Loading dashboard...</div>;
-  if (!restaurant) return <div className="container p-8 text-center text-red-500">Restaurant details not found. Please contact support.</div>;
+  const [activeTab, setActiveTab] = useState('orders');
+
+  if (loading) return <div className="container p-8 text-center py-20 font-medium text-muted">Loading your dashboard...</div>;
+  if (!restaurant) return <div className="container p-8 text-center py-20 text-red-500 font-black">Restaurant details not found. Please contact support.</div>;
+
+  const tabs = [
+    { id: 'orders', label: 'Live Orders', icon: '🛍️' },
+    { id: 'reservations', label: 'Reservations', icon: '📅' },
+    { id: 'menu', label: 'Menu Manager', icon: '🍴' },
+    { id: 'profile', label: 'Profile Settings', icon: '⚙️' },
+  ];
 
   return (
-    <div className="container max-w-6xl flex flex-col gap-8">
-      <header className="flex justify-between items-end border-b pb-6">
+    <div className="max-w-7xl mx-auto px-4 py-8">
+      {/* Header Section */}
+      <header className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-12">
         <div className="flex gap-6 items-center">
-          <img src={restaurant.image} alt={restaurant.name} className="w-24 h-24 rounded-2xl object-cover border-4 border-white shadow-lg" />
+          <div className="relative">
+            <img src={restaurant.image} alt={restaurant.name} className="w-24 h-24 rounded-3xl object-cover border-4 border-white shadow-xl" />
+            <div className={`absolute -bottom-1 -right-1 w-6 h-6 rounded-full border-4 border-white ${restaurant.isOpen ? 'bg-green-500' : 'bg-red-500'}`}></div>
+          </div>
           <div>
-            <h1 className="text-4xl font-extrabold">{restaurant.name}</h1>
-            <p className="text-muted font-medium">{restaurant.cuisine} • {restaurant.address}</p>
+            <h1 className="text-4xl font-black tracking-tighter text-gray-900">{restaurant.name}</h1>
+            <p className="text-lg text-muted font-medium flex items-center gap-2">
+              {restaurant.cuisine} 
+              <span className="w-1 h-1 bg-gray-300 rounded-full"></span> 
+              <span className="text-sm">{restaurant.address}</span>
+            </p>
           </div>
         </div>
-        <div className="flex gap-2">
-          <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase ${restaurant.isOpen ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
-            {restaurant.isOpen ? 'Open' : 'Closed'}
-          </span>
-          <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-bold uppercase">
-            {restaurant.isApproved ? 'Approved' : 'Pending'}
-          </span>
+        
+        <div className="flex items-center gap-3">
+          <div className={`px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest ${restaurant.isOpen ? 'bg-green-50 text-green-700 border border-green-100' : 'bg-red-50 text-red-700 border border-red-100'}`}>
+            {restaurant.isOpen ? 'Accepting Orders' : 'Store Closed'}
+          </div>
+          <div className="px-4 py-1.5 bg-indigo-50 text-indigo-700 border border-indigo-100 rounded-full text-[10px] font-black uppercase tracking-widest">
+            {restaurant.isApproved ? 'Verified Partner' : 'Verification Pending'}
+          </div>
         </div>
       </header>
-      
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div className="md:col-span-3">
-          <OrderKanban restaurantId={restaurant._id} />
-        </div>
 
-        <div className="md:col-span-2 flex flex-col gap-8">
-          <MenuManager restaurantId={restaurant._id} />
-        </div>
+      {/* Tabs Navigation */}
+      <div className="flex flex-wrap gap-2 mb-8 bg-gray-50/50 p-1.5 rounded-2xl border border-gray-100 w-fit">
+        {tabs.map(tab => (
+          <button
+            key={tab.id}
+            onClick={() => setActiveTab(tab.id)}
+            className={`flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold transition-all duration-300 ${
+              activeTab === tab.id 
+              ? 'bg-white text-primary shadow-sm border border-gray-100' 
+              : 'text-gray-500 hover:text-gray-900 hover:bg-white/50'
+            }`}
+          >
+            <span className="text-lg">{tab.icon}</span>
+            {tab.label}
+          </button>
+        ))}
+      </div>
+      
+      {/* Tab Content */}
+      <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+        {activeTab === 'orders' && (
+          <div className="space-y-6">
+            <h2 className="text-2xl font-black tracking-tight flex items-center gap-3">
+              <span className="w-10 h-10 bg-primary/10 text-primary rounded-xl flex items-center justify-center text-xl">🛍️</span>
+              Live Order Queue
+            </h2>
+            <OrderKanban restaurantId={restaurant._id} />
+          </div>
+        )}
+
+        {activeTab === 'reservations' && (
+          <div className="grid grid-cols-1 gap-8">
+            <section className="card glass p-8">
+              <h2 className="text-2xl font-black tracking-tight mb-6 flex items-center gap-3">
+                <span className="w-10 h-10 bg-primary/10 text-primary rounded-xl flex items-center justify-center text-xl">📅</span>
+                Upcoming Reservations
+              </h2>
+              <ReservationList restaurantId={restaurant._id} />
+            </section>
+          </div>
+        )}
+
+        {activeTab === 'menu' && (
+          <div className="grid grid-cols-1 gap-8">
+             <h2 className="text-2xl font-black tracking-tight mb-2 flex items-center gap-3">
+              <span className="w-10 h-10 bg-primary/10 text-primary rounded-xl flex items-center justify-center text-xl">🍴</span>
+              Menu Management
+            </h2>
+            <MenuManager restaurantId={restaurant._id} />
+          </div>
+        )}
         
-        <div className="flex flex-col gap-8">
-          <RestaurantSettings restaurant={restaurant} onUpdate={setRestaurant} />
-          <section className="card bg-white p-6 rounded-lg shadow">
-            <h2 className="text-2xl font-bold mb-4">Upcoming Reservations</h2>
-            <ReservationList restaurantId={restaurant._id} />
-          </section>
-        </div>
+        {activeTab === 'profile' && (
+          <div className="max-w-3xl">
+            <h2 className="text-2xl font-black tracking-tight mb-8 flex items-center gap-3">
+              <span className="w-10 h-10 bg-primary/10 text-primary rounded-xl flex items-center justify-center text-xl">⚙️</span>
+              Restaurant Settings
+            </h2>
+            <RestaurantSettings restaurant={restaurant} onUpdate={setRestaurant} />
+          </div>
+        )}
       </div>
     </div>
   );
