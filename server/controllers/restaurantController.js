@@ -125,10 +125,10 @@ exports.deleteMenuItem = async (req, res) => {
 
 exports.updateRestaurantProfile = async (req, res) => {
   try {
-    const { name, cuisine, address, phone, image } = req.body;
+    const { name, cuisine, address, phone, image, seatingOptions } = req.body;
     const restaurant = await Restaurant.findByIdAndUpdate(
       req.params.id,
-      { name, cuisine, address, phone, image },
+      { name, cuisine, address, phone, image, seatingOptions },
       { new: true, runValidators: true }
     );
 
