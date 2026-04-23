@@ -14,6 +14,7 @@ DineFlow v1.0 development is structured in 4 phases, starting from foundational 
 - [x] **Phase 6: Advanced Table Management** - Status flow, seating preferences, and user visibility
 - [ ] **Phase 7: Rating & Review System** - Order and dish-wise ratings with average calculations
 - [ ] **Phase 8: User Address & Profile Management** - Multi-address support and comprehensive profile editing
+- [ ] **Phase 9: Tailwind CSS Migration** - Replace style.css with Tailwind CSS utility classes across all components
 
 ## Phase Details
 
@@ -106,6 +107,15 @@ Plans:
   2. At checkout, users can select from their saved addresses or add a one-time address.
   3. Profile page allows updating name, mobile number, and email.
 
+### Phase 9: Tailwind CSS Migration
+**Goal**: Replace the monolithic `style.css` with Tailwind CSS utility classes across all client components for maintainability and consistency.
+**Depends on**: Phase 4 (UI baseline established)
+**Success Criteria**:
+  1. All JSX components use Tailwind utility classes instead of custom CSS class names from `style.css`.
+  2. `style.css` retains only global resets, CSS variables, and Google Fonts import.
+  3. UI appearance and responsiveness are preserved or improved after migration.
+  4. No unused CSS classes remain in `style.css`.
+
 ## Progress
 
 **Execution Order:**
@@ -121,3 +131,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | 6. Advanced Table Management | 1/1 | Complete | 2026-04-23 |
 | 7. Rating & Review System | 0/1 | In Progress | - |
 | 8. User Address & Profile Management | 0/1 | Planned | - |
+| 9. Tailwind CSS Migration | 3/3 | Planned (Ready to execute) | - |

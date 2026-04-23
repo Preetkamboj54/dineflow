@@ -14,3 +14,8 @@ See: .planning/PROJECT.md (updated 2026-04-19)
 ## Reminders
 - Remember to use the standard MERN stack with Socket.io.
 - Check `.planning/ROADMAP.md` for phase details.
+
+## Accumulated Context
+
+### Roadmap Evolution
+- Phase 9 added: Tailwind CSS Migration (replace style.css with Tailwind utility classes across all components)
