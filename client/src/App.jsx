@@ -13,48 +13,28 @@ import Profile from './pages/Profile';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import { useNavigate, Link, Navigate, useLocation } from 'react-router-dom';
+import { useAuth } from './context/AuthContext';
 
-const ProtectedRoute = ({ children, allowedRoles, currentRole, isLoggedIn }) => {
+const ProtectedRoute = ({ children, allowedRoles }) => {
+  const { isLoggedIn, role } = useAuth();
+  
   if (!isLoggedIn) return <Navigate to="/login" replace />;
-  if (allowedRoles && !allowedRoles.includes(currentRole)) {
-    if (currentRole === 'restaurant') return <Navigate to="/dashboard" replace />;
+  if (allowedRoles && !allowedRoles.includes(role)) {
+    if (role === 'restaurant') return <Navigate to="/dashboard" replace />;
     return <Navigate to="/" replace />;
   }
   return children;
 };
 
 function App() {
+  const { isLoggedIn, role, logout } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
-  const [token, setToken] = React.useState(localStorage.getItem('token'));
-
-  React.useEffect(() => {
-    const interval = setInterval(() => {
-      const currentToken = localStorage.getItem('token');
-      if (currentToken !== token) {
-        setToken(currentToken);
-      }
-    }, 500);
-    return () => clearInterval(interval);
-  }, [token]);
-
-  const isLoggedIn = !!token;
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
-    setToken(null);
+    logout();
     navigate('/login');
   };
-
-  const getRole = () => {
-    if (!token) return null;
-    try {
-      const payload = JSON.parse(atob(token.split('.')[1]));
-      return payload.role;
-    } catch (e) { return null; }
-  };
-
-  const role = getRole();
 
   const getRootElement = () => {
     if (!isLoggedIn) return <Restaurants />;
@@ -132,37 +112,37 @@ function App() {
       <main className="flex-1">
         <Routes>
           <Route path="/" element={getRootElement()} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={isLoggedIn ? <Navigate to={role === 'restaurant' ? '/dashboard' : '/'} replace /> : <Login />} />
+          <Route path="/register" element={isLoggedIn ? <Navigate to="/" replace /> : <Register />} />
 
           <Route path="/restaurant/:id" element={
-            <ProtectedRoute allowedRoles={['customer', 'admin']} currentRole={role} isLoggedIn={isLoggedIn}><RestaurantMenu /></ProtectedRoute>
+            <ProtectedRoute allowedRoles={['customer', 'admin']}><RestaurantMenu /></ProtectedRoute>
           } />
           <Route path="/cart" element={
-            <ProtectedRoute allowedRoles={['customer', 'admin']} currentRole={role} isLoggedIn={isLoggedIn}><Cart /></ProtectedRoute>
+            <ProtectedRoute allowedRoles={['customer', 'admin']}><Cart /></ProtectedRoute>
           } />
           <Route path="/checkout" element={
-            <ProtectedRoute allowedRoles={['customer', 'admin']} currentRole={role} isLoggedIn={isLoggedIn}><Checkout /></ProtectedRoute>
+            <ProtectedRoute allowedRoles={['customer', 'admin']}><Checkout /></ProtectedRoute>
           } />
           <Route path="/order-history" element={
-            <ProtectedRoute allowedRoles={['customer', 'admin']} currentRole={role} isLoggedIn={isLoggedIn}><OrderHistory /></ProtectedRoute>
+            <ProtectedRoute allowedRoles={['customer', 'admin']}><OrderHistory /></ProtectedRoute>
           } />
           <Route path="/my-reservations" element={
-            <ProtectedRoute allowedRoles={['customer', 'admin']} currentRole={role} isLoggedIn={isLoggedIn}><MyReservations /></ProtectedRoute>
+            <ProtectedRoute allowedRoles={['customer', 'admin']}><MyReservations /></ProtectedRoute>
           } />
           <Route path="/reservation/:id" element={
-            <ProtectedRoute allowedRoles={['customer', 'admin']} currentRole={role} isLoggedIn={isLoggedIn}><Reservation /></ProtectedRoute>
+            <ProtectedRoute allowedRoles={['customer', 'admin']}><Reservation /></ProtectedRoute>
           } />
           <Route path="/profile" element={
-            <ProtectedRoute allowedRoles={['customer', 'admin']} currentRole={role} isLoggedIn={isLoggedIn}><Profile /></ProtectedRoute>
+            <ProtectedRoute allowedRoles={['customer', 'admin']}><Profile /></ProtectedRoute>
           } />
 
           <Route path="/dashboard" element={
-            <ProtectedRoute allowedRoles={['restaurant']} currentRole={role} isLoggedIn={isLoggedIn}><RestaurantDashboard /></ProtectedRoute>
+            <ProtectedRoute allowedRoles={['restaurant']}><RestaurantDashboard /></ProtectedRoute>
           } />
 
           <Route path="/admin-dashboard" element={
-            <ProtectedRoute allowedRoles={['admin']} currentRole={role} isLoggedIn={isLoggedIn}><AdminDashboard /></ProtectedRoute>
+            <ProtectedRoute allowedRoles={['admin']}><AdminDashboard /></ProtectedRoute>
           } />
         </Routes>
       </main>

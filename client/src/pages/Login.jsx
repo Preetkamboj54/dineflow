@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import api from '../utils/api';
 
 const Login = () => {
+  const { login } = useAuth();
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [error, setError] = useState('');
   const navigate = useNavigate();
@@ -17,7 +19,7 @@ const Login = () => {
     try {
       const response = await api.post('/api/auth/login', formData);
       if (response.data.token) {
-        localStorage.setItem('token', response.data.token);
+        login(response.data.token);
         if (response.data.role === 'restaurant') {
           navigate('/dashboard');
         } else {

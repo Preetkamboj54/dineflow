@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import api from '../utils/api';
 
 const Register = () => {
+  const { login } = useAuth();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -23,7 +25,7 @@ const Register = () => {
     try {
       const response = await api.post('/api/auth/register', formData);
       if (response.data.token) {
-        localStorage.setItem('token', response.data.token);
+        login(response.data.token);
         const user = response.data;
         if (user.role === 'restaurant') {
           navigate('/dashboard');
