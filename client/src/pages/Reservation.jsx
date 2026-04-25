@@ -57,14 +57,14 @@ const Reservation = () => {
     }
   };
 
-  if (!restaurant) return <div className="container p-12 text-center">Loading...</div>;
+  if (!restaurant) return <div className="max-w-2xl mx-auto px-6 p-12 text-center">Loading...</div>;
 
   return (
-    <div className="container max-w-2xl py-12">
+    <div className="max-w-2xl mx-auto px-6 py-12">
       <div className="card bg-white p-8 rounded-3xl shadow-xl border">
         <header className="text-center mb-8">
           <h2 className="text-3xl font-extrabold mb-2">Book a Table</h2>
-          <p className="text-muted font-medium">Reserve your spot at {restaurant.name}</p>
+          <p className="text-[var(--text-muted)] font-medium">Reserve your spot at {restaurant.name}</p>
         </header>
 
         <form onSubmit={handleSubmit} className="space-y-6">
@@ -86,7 +86,7 @@ const Reservation = () => {
             </div>
             <div className="form-group">
               <label>Seating Preference</label>
-              <select name="seatingPreference" value={formData.seatingPreference} onChange={handleChange} className="w-full p-3 rounded-lg border">
+              <select name="seatingPreference" value={formData.seatingPreference} onChange={handleChange}>
                 {restaurant.seatingOptions?.map(opt => (
                   <option key={opt} value={opt}>{opt}</option>
                 ))}

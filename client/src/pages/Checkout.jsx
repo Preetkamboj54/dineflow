@@ -91,7 +91,7 @@ const Checkout = () => {
     return (
       <div className="max-w-7xl mx-auto px-4 py-20 text-center">
         <h2 className="text-4xl font-black mb-4">Your cart is empty</h2>
-        <p className="text-muted mb-8">Please add items to your cart before checking out.</p>
+        <p className="text-[var(--text-muted)] mb-8">Please add items to your cart before checking out.</p>
         <button onClick={() => navigate('/')} className="btn-primary px-8 py-3">Go to Restaurants</button>
       </div>
     );
@@ -111,7 +111,7 @@ const Checkout = () => {
               <h2 className="text-2xl font-black tracking-tight">Delivery Address</h2>
               <button 
                 onClick={() => setShowNewAddressForm(true)}
-                className="text-primary font-bold text-sm hover:underline"
+              className="text-[var(--primary)] font-bold text-sm hover:underline"
               >
                 + Add New Address
               </button>
@@ -155,7 +155,7 @@ const Checkout = () => {
               ))}
               {addresses.length === 0 && (
                 <div className="col-span-full py-8 text-center bg-gray-50 rounded-2xl border border-dashed">
-                  <p className="text-muted text-sm">No saved addresses. Please add one to continue.</p>
+                  <p className="text-[var(--text-muted)] text-sm">No saved addresses. Please add one to continue.</p>
                 </div>
               )}
             </div>
@@ -175,7 +175,7 @@ const Checkout = () => {
                 />
                 <div>
                   <p className="font-bold">Cash on Delivery</p>
-                  <p className="text-xs text-muted">Pay when your food arrives</p>
+                  <p className="text-xs text-[var(--text-muted)]">Pay when your food arrives</p>
                 </div>
               </label>
               <label className={`flex items-center gap-4 p-4 rounded-2xl border-2 cursor-pointer transition-all ${paymentMethod === 'Pay at Restaurant' ? 'border-primary bg-primary/5' : 'border-gray-100'}`}>
@@ -188,7 +188,7 @@ const Checkout = () => {
                 />
                 <div>
                   <p className="font-bold">Pay at Restaurant</p>
-                  <p className="text-xs text-muted">Pickup your order and pay in person</p>
+                  <p className="text-xs text-[var(--text-muted)]">Pickup your order and pay in person</p>
                 </div>
               </label>
             </div>
@@ -202,24 +202,24 @@ const Checkout = () => {
             <div className="space-y-4 mb-8">
               {cartItems.map(item => (
                 <div key={item.menuItemId} className="flex justify-between text-sm">
-                  <span className="text-muted">{item.name} <span className="font-bold text-foreground">x{item.quantity}</span></span>
-                  <span className="font-bold">${(item.price * item.quantity).toFixed(2)}</span>
+                  <span className="text-[var(--text-muted)]">{item.name} <span className="font-bold text-[var(--text-main)]">x{item.quantity}</span></span>
+                  <span className="font-bold">₹{(item.price * item.quantity).toFixed(2)}</span>
                 </div>
               ))}
             </div>
             
             <div className="pt-6 border-t space-y-2 mb-8">
               <div className="flex justify-between text-sm">
-                <span className="text-muted">Subtotal</span>
-                <span className="font-medium">${cartTotal.toFixed(2)}</span>
+                <span className="text-[var(--text-muted)]">Subtotal</span>
+                <span className="font-medium">₹{cartTotal.toFixed(2)}</span>
               </div>
               <div className="flex justify-between text-sm">
-                <span className="text-muted">Delivery Fee</span>
+                <span className="text-[var(--text-muted)]">Delivery Fee</span>
                 <span className="text-green-600 font-bold">FREE</span>
               </div>
               <div className="flex justify-between text-xl font-black pt-4">
                 <span>Total</span>
-                <span className="text-primary">${cartTotal.toFixed(2)}</span>
+                <span className="text-[var(--primary)]">₹{cartTotal.toFixed(2)}</span>
               </div>
             </div>
 
@@ -231,7 +231,7 @@ const Checkout = () => {
               {loading ? 'Placing Order...' : 'Place Order'}
             </button>
             {!selectedAddress && (
-              <p className="text-[10px] text-center mt-3 text-danger font-bold uppercase tracking-widest">
+              <p className="text-[10px] text-center mt-3 text-[var(--danger)] font-bold uppercase tracking-widest">
                 Please select a delivery address
               </p>
             )}

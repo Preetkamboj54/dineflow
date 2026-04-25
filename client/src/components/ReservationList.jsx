@@ -52,7 +52,7 @@ const ReservationList = ({ restaurantId }) => {
                     <div className="font-black text-xl tracking-tight text-gray-900">
                       {res.time}
                     </div>
-                    <div className="flex items-center gap-2 text-sm text-muted font-bold mt-1">
+                    <div className="flex items-center gap-2 text-sm text-[var(--text-muted)] font-bold mt-1">
                       <span className="flex items-center gap-1">👥 {res.partySize} Guests</span>
                       <span className="w-1.5 h-1.5 bg-gray-200 rounded-full"></span>
                       <span className="text-gray-900">{res.userId?.name || 'Customer'}</span>

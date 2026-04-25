@@ -31,7 +31,7 @@ const RestaurantMenu = () => {
   const categories = [...new Set(menu.map(item => item.category))];
 
   return (
-    <div className="container max-w-5xl">
+    <div className="max-w-5xl mx-auto my-8 px-6">
       {/* Restaurant Hero Section */}
       <div className="relative mb-12 rounded-3xl overflow-hidden shadow-2xl bg-white border">
         <img 
@@ -42,8 +42,8 @@ const RestaurantMenu = () => {
         <div className="p-8 text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-6">
           <div>
             <h1 className="text-4xl md:text-5xl font-black mb-2 tracking-tight">{restaurant.name}</h1>
-            <p className="text-lg text-muted font-medium">
-              <span className="text-primary">{restaurant.cuisine}</span> • {restaurant.address}
+            <p className="text-lg text-[var(--text-muted)] font-medium">
+              <span className="text-[var(--primary)]">{restaurant.cuisine}</span> • {restaurant.address}
             </p>
           </div>
           <div className="flex gap-3">
@@ -58,8 +58,8 @@ const RestaurantMenu = () => {
         {categories.map(category => (
           <div key={category}>
             <div className="flex items-center gap-4 mb-8">
-              <h2 className="text-2xl font-bold text-primary uppercase tracking-widest">{category}</h2>
-              <div className="h-px flex-1 bg-gradient-to-r from-border to-transparent"></div>
+              <h2 className="text-2xl font-bold text-[var(--primary)] uppercase tracking-widest">{category}</h2>
+              <div className="h-px flex-1 bg-gradient-to-r from-[var(--border)] to-transparent"></div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {menu
@@ -79,13 +79,13 @@ const RestaurantMenu = () => {
                             <div className="flex items-center gap-1 text-amber-500 text-xs">
                               <span>★</span>
                               <span className="font-bold">{item.rating.toFixed(1)}</span>
-                              <span className="text-muted font-normal">({item.numReviews})</span>
+                              <span className="text-[var(--text-muted)] font-normal">({item.numReviews})</span>
                             </div>
                           )}
                         </div>
-                        <span className="text-primary font-black whitespace-nowrap">₹{item.price.toFixed(2)}</span>
+                        <span className="text-[var(--primary)] font-black whitespace-nowrap">₹{item.price.toFixed(2)}</span>
                       </div>
-                      <p className="text-sm text-muted mb-4 line-clamp-2 leading-relaxed">{item.description}</p>
+                      <p className="text-sm text-[var(--text-muted)] mb-4 line-clamp-2 leading-relaxed">{item.description}</p>
                       <button 
                         onClick={() => addToCart(item, id)} 
                         className={`w-full py-2.5 rounded-xl font-bold text-sm transition-all ${

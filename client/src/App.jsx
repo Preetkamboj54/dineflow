@@ -17,7 +17,6 @@ import { useNavigate, Link, Navigate, useLocation } from 'react-router-dom';
 const ProtectedRoute = ({ children, allowedRoles, currentRole, isLoggedIn }) => {
   if (!isLoggedIn) return <Navigate to="/login" replace />;
   if (allowedRoles && !allowedRoles.includes(currentRole)) {
-    // Redirect to their respective dashboards if they hit a forbidden route
     if (currentRole === 'restaurant') return <Navigate to="/dashboard" replace />;
     return <Navigate to="/" replace />;
   }
@@ -57,7 +56,6 @@ function App() {
 
   const role = getRole();
 
-  // Root path handling
   const getRootElement = () => {
     if (!isLoggedIn) return <Restaurants />;
     if (role === 'restaurant') return <Navigate to="/dashboard" replace />;
@@ -65,42 +63,78 @@ function App() {
   };
 
   return (
-    <div className="app-container">
-      <header>
-        <div className="nav-container">
-          <Link to={role === 'restaurant' ? '/dashboard' : '/'} className="logo">
+    <div className="min-h-screen flex flex-col">
+      <header className="bg-white/70 backdrop-blur-md border-b border-slate-200 sticky top-0 z-50 py-4">
+        <div className="max-w-[1200px] mx-auto flex justify-between items-center px-6">
+          <Link
+            to={role === 'restaurant' ? '/dashboard' : '/'}
+            className="text-2xl font-extrabold text-[var(--primary)] no-underline font-['Outfit'] tracking-tight"
+          >
             DineFlow
           </Link>
-          <nav className="nav-links">
+          <nav className="flex gap-8 items-center">
             {isLoggedIn ? (
               <>
                 {(role === 'customer' || role === 'admin') && (
                   <>
-                    <Link to="/order-history">Orders</Link>
-                    <Link to="/my-reservations">Reservations</Link>
-                    <Link to="/profile">Profile</Link>
+                    <Link
+                      to="/order-history"
+                      className="no-underline text-[var(--text-muted)] font-medium transition-all duration-200 text-[0.95rem] hover:text-[var(--primary)]"
+                    >
+                      Orders
+                    </Link>
+                    <Link
+                      to="/my-reservations"
+                      className="no-underline text-[var(--text-muted)] font-medium transition-all duration-200 text-[0.95rem] hover:text-[var(--primary)]"
+                    >
+                      Reservations
+                    </Link>
+                    <Link
+                      to="/profile"
+                      className="no-underline text-[var(--text-muted)] font-medium transition-all duration-200 text-[0.95rem] hover:text-[var(--primary)]"
+                    >
+                      Profile
+                    </Link>
                   </>
                 )}
-                {role === 'restaurant' && <Link to="/dashboard">Merchant Dashboard</Link>}
-                {role === 'admin' && <Link to="/admin-dashboard">Admin Panel</Link>}
+                {role === 'restaurant' && (
+                  <Link
+                    to="/dashboard"
+                    className="no-underline text-[var(--text-muted)] font-medium transition-all duration-200 text-[0.95rem] hover:text-[var(--primary)]"
+                  >
+                    Merchant Dashboard
+                  </Link>
+                )}
+                {role === 'admin' && (
+                  <Link
+                    to="/admin-dashboard"
+                    className="no-underline text-[var(--text-muted)] font-medium transition-all duration-200 text-[0.95rem] hover:text-[var(--primary)]"
+                  >
+                    Admin Panel
+                  </Link>
+                )}
                 <button onClick={handleLogout} className="btn-secondary">Logout</button>
               </>
             ) : (
               <>
-                <Link to="/login">Login</Link>
+                <Link
+                  to="/login"
+                  className="no-underline text-[var(--text-muted)] font-medium transition-all duration-200 text-[0.95rem] hover:text-[var(--primary)]"
+                >
+                  Login
+                </Link>
                 <Link to="/register" className="btn-primary" style={{ color: 'white' }}>Register</Link>
               </>
             )}
           </nav>
         </div>
       </header>
-      <main>
+      <main className="flex-1">
         <Routes>
-          {/* Public / User Routes */}
           <Route path="/" element={getRootElement()} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          
+
           <Route path="/restaurant/:id" element={
             <ProtectedRoute allowedRoles={['customer', 'admin']} currentRole={role} isLoggedIn={isLoggedIn}><RestaurantMenu /></ProtectedRoute>
           } />
@@ -123,12 +157,10 @@ function App() {
             <ProtectedRoute allowedRoles={['customer', 'admin']} currentRole={role} isLoggedIn={isLoggedIn}><Profile /></ProtectedRoute>
           } />
 
-          {/* Restaurant Routes */}
           <Route path="/dashboard" element={
             <ProtectedRoute allowedRoles={['restaurant']} currentRole={role} isLoggedIn={isLoggedIn}><RestaurantDashboard /></ProtectedRoute>
           } />
 
-          {/* Admin Routes */}
           <Route path="/admin-dashboard" element={
             <ProtectedRoute allowedRoles={['admin']} currentRole={role} isLoggedIn={isLoggedIn}><AdminDashboard /></ProtectedRoute>
           } />

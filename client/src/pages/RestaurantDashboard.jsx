@@ -43,8 +43,8 @@ const RestaurantDashboard = () => {
 
   const [activeTab, setActiveTab] = useState('orders');
 
-  if (loading) return <div className="container p-8 text-center py-20 font-medium text-muted">Loading your dashboard...</div>;
-  if (!restaurant) return <div className="container p-8 text-center py-20 text-red-500 font-black">Restaurant details not found. Please contact support.</div>;
+  if (loading) return <div className="max-w-7xl mx-auto px-4 p-8 text-center py-20 font-medium text-[var(--text-muted)]">Loading your dashboard...</div>;
+  if (!restaurant) return <div className="max-w-7xl mx-auto px-4 p-8 text-center py-20 text-red-500 font-black">Restaurant details not found. Please contact support.</div>;
 
   const tabs = [
     { id: 'orders', label: 'Live Orders', icon: '🛍️' },
@@ -64,7 +64,7 @@ const RestaurantDashboard = () => {
           </div>
           <div>
             <h1 className="text-4xl font-black tracking-tighter text-gray-900">{restaurant.name}</h1>
-            <p className="text-lg text-muted font-medium flex items-center gap-2">
+            <p className="text-lg text-[var(--text-muted)] font-medium flex items-center gap-2">
               {restaurant.cuisine} 
               <span className="w-1 h-1 bg-gray-300 rounded-full"></span> 
               <span className="text-sm">{restaurant.address}</span>

@@ -37,7 +37,7 @@ const AdminDashboard = () => {
   if (loading) return <div className="p-8 text-center">Loading Admin Panel...</div>;
 
   return (
-    <div className="container max-w-6xl mx-auto p-4 flex flex-col gap-8">
+    <div className="max-w-6xl mx-auto p-4 flex flex-col gap-8">
       <header className="flex justify-between items-center mb-4">
         <h1 className="text-3xl font-bold">Admin Oversight</h1>
       </header>
@@ -63,7 +63,7 @@ const AdminDashboard = () => {
       </div>
 
       {/* Restaurant Management */}
-      <section className="bg-white rounded-lg shadow overflow-hidden">
+      <section className="bg-white rounded-xl shadow-md overflow-hidden">
         <div className="p-6 border-b">
           <h2 className="text-xl font-semibold">Restaurant Management</h2>
         </div>
@@ -96,7 +96,7 @@ const AdminDashboard = () => {
                   <td className="p-4 space-x-2">
                     <button 
                       onClick={() => handleToggle(res._id, 'isApproved', !res.isApproved)}
-                      className={`btn-sm ${res.isApproved ? 'btn-danger' : 'btn-primary'}`}
+                      className={`btn-sm ${res.isApproved ? 'btn-danger' : 'btn-primarys'}`}
                     >
                       {res.isApproved ? 'Revoke' : 'Approve'}
                     </button>

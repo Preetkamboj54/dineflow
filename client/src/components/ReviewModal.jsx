@@ -4,7 +4,7 @@ import api from '../utils/api';
 const StarRating = ({ rating, onRate, label }) => {
   return (
     <div className="flex flex-col gap-1">
-      {label && <p className="text-xs font-bold text-muted uppercase tracking-wider">{label}</p>}
+      {label && <p className="text-xs font-bold text-[var(--text-muted)] uppercase tracking-wider">{label}</p>}
       <div className="flex gap-1">
         {[1, 2, 3, 4, 5].map((star) => (
           <button
@@ -58,15 +58,15 @@ const ReviewModal = ({ order, onClose }) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-black/60 backdrop-blur-md flex items-center justify-center p-4 z-60">
+    <div className="fixed inset-0 bg-black/60 backdrop-blur-md flex items-center justify-center p-4 z-[60]">
       <div className="bg-white rounded-3xl shadow-2xl max-w-xl w-full p-8 max-h-[90vh] overflow-y-auto">
         <header className="mb-8 text-center">
           <h2 className="text-3xl font-black mb-2">Rate Your Experience</h2>
-          <p className="text-muted font-medium">How was your meal from {order.restaurantId?.name}?</p>
+          <p className="text-[var(--text-muted)] font-medium">How was your meal from {order.restaurantId?.name}?</p>
         </header>
 
         {error && (
-          <div className="bg-red-50 text-danger p-4 rounded-xl text-sm mb-6 font-bold border border-red-100">
+          <div className="bg-red-50 text-[var(--danger)] p-4 rounded-xl text-sm mb-6 font-bold border border-red-100">
             {error}
           </div>
         )}

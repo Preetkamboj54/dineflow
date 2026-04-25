@@ -24,7 +24,7 @@ const Register = () => {
       const response = await api.post('/api/auth/register', formData);
       if (response.data.token) {
         localStorage.setItem('token', response.data.token);
-        const user = response.data; // Response is the user object itself in this version
+        const user = response.data;
         if (user.role === 'restaurant') {
           navigate('/dashboard');
         } else {
@@ -40,11 +40,11 @@ const Register = () => {
     <div className="auth-container" style={{ maxWidth: '550px' }}>
       <div className="text-center mb-8">
         <h2 className="text-3xl font-bold mb-2">Create Account</h2>
-        <p className="text-muted">Join the DineFlow community today</p>
+        <p className="text-[var(--text-muted)]">Join the DineFlow community today</p>
       </div>
 
       {error && (
-        <div className="bg-red-50 text-danger p-3 rounded-lg text-sm mb-6 border border-red-100">
+        <div className="bg-red-50 text-[var(--danger)] p-3 rounded-xl text-sm mb-6 border border-red-100">
           {error}
         </div>
       )}
@@ -80,12 +80,15 @@ const Register = () => {
           </select>
         </div>
 
-        <button type="submit" className="btn-primary w-full py-3 mt-4">Create Account</button>
+        <button type="submit" className="btn-primary w-full mt-4" style={{ padding: '0.75rem' }}>
+          Create Account
+        </button>
       </form>
 
-      <div className="mt-8 text-center pt-6 border-t">
-        <p className="text-muted text-sm">
-          Already have an account? <Link to="/login" className="text-primary font-semibold">Sign in</Link>
+      <div className="mt-8 text-center pt-6 border-t border-[var(--border)]">
+        <p className="text-[var(--text-muted)] text-sm">
+          Already have an account?{' '}
+          <Link to="/login" className="text-[var(--primary)] font-semibold">Sign in</Link>
         </p>
       </div>
     </div>

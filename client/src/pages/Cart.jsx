@@ -8,38 +8,47 @@ const Cart = () => {
 
   if (cartItems.length === 0) {
     return (
-      <div className="cart-container">
-        <h2>Your Cart is Empty</h2>
-        <p>Add some delicious food to your cart!</p>
+      <div className="max-w-2xl mx-auto my-16 px-6 text-center">
+        <h2 className="text-3xl font-bold mb-4">Your Cart is Empty</h2>
+        <p className="text-[var(--text-muted)] mb-8">Add some delicious food to your cart!</p>
         <Link to="/" className="btn-primary">Browse Restaurants</Link>
       </div>
     );
   }
 
   return (
-    <div className="cart-container">
-      <h2>Your Shopping Cart</h2>
-      <div className="cart-items">
+    <div className="max-w-3xl mx-auto my-8 px-6">
+      <h2 className="text-3xl font-bold mb-8">Your Shopping Cart</h2>
+      <div className="card divide-y divide-[var(--border)] mb-6">
         {cartItems.map(item => (
-          <div key={item.menuItemId} className="cart-item">
-            <div className="item-info">
-              <h3>{item.name}</h3>
-              <p>${item.price} each</p>
+          <div key={item.menuItemId} className="flex justify-between items-center py-4 gap-4">
+            <div className="flex-1 min-w-0">
+              <h3 className="font-bold truncate">{item.name}</h3>
+              <p className="text-[var(--text-muted)] text-sm">₹{item.price} each</p>
             </div>
-            <div className="item-controls">
-              <button onClick={() => updateQuantity(item.menuItemId, item.quantity - 1)}>-</button>
-              <span>{item.quantity}</span>
-              <button onClick={() => updateQuantity(item.menuItemId, item.quantity + 1)}>+</button>
-              <button onClick={() => removeFromCart(item.menuItemId)} className="btn-danger">Remove</button>
+            <div className="flex items-center gap-3">
+              <button
+                onClick={() => updateQuantity(item.menuItemId, item.quantity - 1)}
+                className="btn-sm w-8 h-8 flex items-center justify-center text-lg"
+              >-</button>
+              <span className="font-bold w-6 text-center">{item.quantity}</span>
+              <button
+                onClick={() => updateQuantity(item.menuItemId, item.quantity + 1)}
+                className="btn-sm w-8 h-8 flex items-center justify-center text-lg"
+              >+</button>
+              <button
+                onClick={() => removeFromCart(item.menuItemId)}
+                className="btn-sm btn-danger px-3"
+              >Remove</button>
             </div>
-            <div className="item-total">
-              ${(item.price * item.quantity).toFixed(2)}
+            <div className="font-bold text-right min-w-[80px]">
+              ₹{(item.price * item.quantity).toFixed(2)}
             </div>
           </div>
         ))}
       </div>
-      <div className="cart-summary">
-        <h3>Total: ${cartTotal.toFixed(2)}</h3>
+      <div className="card flex justify-between items-center">
+        <h3 className="text-xl font-bold">Total: ₹{cartTotal.toFixed(2)}</h3>
         <button onClick={() => navigate('/checkout')} className="btn-primary">Proceed to Checkout</button>
       </div>
     </div>

@@ -29,10 +29,10 @@ const Restaurants = () => {
   };
 
   return (
-    <div className="container">
-      <section className="hero-section text-center py-12">
+    <div className="max-w-[1200px] mx-auto my-8 px-6">
+      <section className="text-center py-12">
         <h1 className="text-5xl font-extrabold mb-4">Discover Local Flavors</h1>
-        <p className="text-xl text-muted mb-8">Order from the best restaurants in town</p>
+        <p className="text-xl text-[var(--text-muted)] mb-8">Order from the best restaurants in town</p>
         
         <div className="max-w-xl mx-auto">
           <form onSubmit={handleSearch} className="flex gap-2">
@@ -56,17 +56,17 @@ const Restaurants = () => {
               <div className="flex justify-between items-start">
                 <div>
                   <h3 className="text-xl mb-1">{res.name}</h3>
-                  <p className="text-muted text-sm">{res.cuisine}</p>
+                  <p className="text-[var(--text-muted)] text-sm">{res.cuisine}</p>
                 </div>
                 <div className="flex flex-col items-end">
                   <div className="flex items-center gap-1 text-amber-500">
                     <span className="font-bold">{res.rating > 0 ? res.rating.toFixed(1) : 'New'}</span>
                     <span className="text-sm">★</span>
                   </div>
-                  <span className="text-[10px] text-muted font-bold uppercase tracking-tighter">
+                  <span className="text-[10px] text-[var(--text-muted)] font-bold uppercase tracking-tighter">
                     {res.numReviews || 0} reviews
                   </span>
-                  <span className={`text-xs mt-2 font-bold ${res.isOpen ? 'text-secondary' : 'text-danger'}`}>
+                  <span className={`text-xs mt-2 font-bold ${res.isOpen ? 'text-[var(--secondary)]' : 'text-[var(--danger)]'}`}>
                     {res.isOpen ? '● Open' : '● Closed'}
                   </span>
                 </div>
@@ -75,7 +75,7 @@ const Restaurants = () => {
           ))
         ) : (
           <div className="col-span-full text-center py-20">
-            <p className="text-muted text-lg">No restaurants found. Try a different search!</p>
+            <p className="text-[var(--text-muted)] text-lg">No restaurants found. Try a different search!</p>
           </div>
         )}
       </div>

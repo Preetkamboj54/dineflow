@@ -81,7 +81,7 @@ const MenuManager = ({ restaurantId }) => {
       <div className="flex justify-between items-center bg-white/50 backdrop-blur-sm p-4 rounded-2xl border border-gray-100 shadow-sm">
         <div>
           <h3 className="text-xl font-black tracking-tight text-gray-900">Menu Catalog</h3>
-          <p className="text-xs text-muted font-medium">{menuItems.length} items available</p>
+          <p className="text-xs text-[var(--text-muted)] font-medium">{menuItems.length} items available</p>
         </div>
         <button 
           onClick={() => setIsAdding(!isAdding)} 
@@ -165,8 +165,8 @@ const MenuManager = ({ restaurantId }) => {
                       {item.category}
                     </span>
                   </div>
-                  <p className="text-sm text-muted line-clamp-1 mb-2 font-medium">{item.description}</p>
-                  <div className="text-xl font-black text-primary">₹{item.price}</div>
+                  <p className="text-sm text-[var(--text-muted)] line-clamp-1 mb-2 font-medium">{item.description}</p>
+                  <div className="text-xl font-black text-[var(--primary)]">₹{item.price}</div>
                 </div>
               </div>
             )}
@@ -199,8 +199,8 @@ const MenuManager = ({ restaurantId }) => {
         {menuItems.length === 0 && !loading && (
           <div className="text-center py-20 bg-gray-50/50 border-2 border-dashed border-gray-200 rounded-3xl">
             <div className="text-4xl mb-4">🍱</div>
-            <p className="text-muted font-bold">Your menu is empty.</p>
-            <p className="text-xs text-muted mb-6">Start by adding your first delicious dish!</p>
+            <p className="text-[var(--text-muted)] font-bold">Your menu is empty.</p>
+            <p className="text-xs text-[var(--text-muted)] mb-6">Start by adding your first delicious dish!</p>
             <button onClick={() => setIsAdding(true)} className="btn-primary px-8 py-3">Add Your First Item</button>
           </div>
         )}

@@ -38,7 +38,7 @@ const RestaurantSettings = ({ restaurant, onUpdate }) => {
   };
 
   return (
-    <div className="card bg-white p-6 rounded-lg shadow">
+    <div className="card">
       <h2 className="text-2xl font-bold mb-6">Restaurant Profile Settings</h2>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -72,8 +72,8 @@ const RestaurantSettings = ({ restaurant, onUpdate }) => {
 
         {formData.image && (
           <div className="mb-4">
-            <p className="text-sm text-muted mb-2">Preview:</p>
-            <img src={formData.image} alt="Preview" className="w-full h-48 object-cover rounded-lg border" />
+            <p className="text-sm text-[var(--text-muted)] mb-2">Preview:</p>
+            <img src={formData.image} alt="Preview" className="w-full h-48 object-cover rounded-xl border" />
           </div>
         )}
 

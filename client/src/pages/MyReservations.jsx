@@ -19,18 +19,18 @@ const MyReservations = () => {
     fetchReservations();
   }, []);
 
-  if (loading) return <div className="container p-12 text-center">Loading your reservations...</div>;
+  if (loading) return <div className="max-w-4xl mx-auto px-6 p-12 text-center">Loading your reservations...</div>;
 
   return (
-    <div className="container max-w-4xl py-12">
+    <div className="max-w-4xl mx-auto px-6 py-12">
       <header className="mb-10">
         <h1 className="text-4xl font-extrabold mb-2">My Reservations</h1>
-        <p className="text-muted font-medium">Track your upcoming table bookings</p>
+        <p className="text-[var(--text-muted)] font-medium">Track your upcoming table bookings</p>
       </header>
 
       {reservations.length === 0 ? (
         <div className="text-center py-20 bg-white rounded-3xl border border-dashed shadow-sm">
-          <p className="text-muted text-lg">You haven't made any reservations yet.</p>
+          <p className="text-[var(--text-muted)] text-lg">You haven't made any reservations yet.</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -45,14 +45,14 @@ const MyReservations = () => {
                   {res.status}
                 </span>
                 <div className="text-right">
-                  <p className="text-sm font-bold text-primary">{new Date(res.date).toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' })}</p>
+                  <p className="text-sm font-bold text-[var(--primary)]">{new Date(res.date).toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' })}</p>
                   <p className="text-2xl font-black">{res.time}</p>
                 </div>
               </div>
 
               <div className="space-y-2 mb-6">
                 <h3 className="text-xl font-bold">{res.restaurantId?.name}</h3>
-                <div className="flex gap-4 text-sm text-muted font-medium">
+                <div className="flex gap-4 text-sm text-[var(--text-muted)] font-medium">
                   <span>👥 {res.partySize} People</span>
                   <span>🪑 {res.seatingPreference} Seating</span>
                 </div>

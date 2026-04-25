@@ -111,7 +111,7 @@ const Profile = () => {
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-12">
-      <h1 className="text-4xl font-black mb-8 tracking-tighter">My <span className="text-primary">Profile</span></h1>
+      <h1 className="text-4xl font-black mb-8 tracking-tighter">My <span className="text-[var(--primary)]">Profile</span></h1>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Account Details */}
@@ -181,18 +181,18 @@ const Profile = () => {
             {user.addresses?.map(addr => (
               <div key={addr._id} className="card glass p-5 relative border border-gray-100 hover:border-primary/30 transition-all">
                 {addr.isDefault && (
-                  <span className="absolute top-4 right-4 bg-primary/10 text-primary text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full">
+                  <span className="absolute top-4 right-4 bg-primary/10 text-[var(--primary)] text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full">
                     Default
                   </span>
                 )}
                 <h3 className="font-bold text-lg mb-1">{addr.label}</h3>
-                <p className="text-muted text-sm leading-relaxed mb-4">
+                <p className="text-[var(--text-muted)] text-sm leading-relaxed mb-4">
                   {addr.street}<br />
                   {addr.city}, {addr.state} {addr.zipCode}
                 </p>
                 <div className="flex gap-4">
-                  <button onClick={() => startEditAddress(addr)} className="text-xs font-bold text-primary hover:underline">Edit</button>
-                  <button onClick={() => deleteAddress(addr._id)} className="text-xs font-bold text-danger hover:underline">Delete</button>
+                  <button onClick={() => startEditAddress(addr)} className="text-xs font-bold text-[var(--primary)] hover:underline">Edit</button>
+                  <button onClick={() => deleteAddress(addr._id)} className="text-xs font-bold text-[var(--danger)] hover:underline">Delete</button>
                 </div>
               </div>
             ))}
