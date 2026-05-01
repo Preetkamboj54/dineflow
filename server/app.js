@@ -45,6 +45,9 @@ app.use('/api/reviews', reviewRoutes);
 const userRoutes = require('./routes/userRoutes');
 app.use('/api/users', userRoutes);
 
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'ok' });
+});
 // 404 Handler
 app.use((req, res) => {
   console.log(`404 Not Found: ${req.url}`);
