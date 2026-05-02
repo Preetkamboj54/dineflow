@@ -57,7 +57,27 @@ const Reservation = () => {
     }
   };
 
-  if (!restaurant) return <div className="max-w-2xl mx-auto px-6 p-12 text-center">Loading...</div>;
+  if (!restaurant) return (
+    <div className="max-w-2xl mx-auto px-6 py-12 animate-pulse">
+      <div className="card bg-white p-8 rounded-3xl shadow-xl border">
+        <header className="text-center mb-8 flex flex-col items-center">
+          <div className="h-8 bg-gray-200 rounded w-1/2 mb-4"></div>
+          <div className="h-4 bg-gray-200 rounded w-1/3"></div>
+        </header>
+        <div className="space-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="h-12 bg-gray-200 rounded-xl"></div>
+            <div className="h-12 bg-gray-200 rounded-xl"></div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="h-12 bg-gray-200 rounded-xl"></div>
+            <div className="h-12 bg-gray-200 rounded-xl"></div>
+          </div>
+          <div className="h-14 bg-gray-200 rounded-xl w-full mt-4"></div>
+        </div>
+      </div>
+    </div>
+  );
 
   return (
     <div className="max-w-2xl mx-auto px-6 py-12">

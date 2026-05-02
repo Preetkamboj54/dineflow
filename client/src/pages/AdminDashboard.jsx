@@ -34,7 +34,17 @@ const AdminDashboard = () => {
     }
   };
 
-  if (loading) return <div className="p-8 text-center">Loading Admin Panel...</div>;
+  if (loading) return (
+    <div className="max-w-6xl mx-auto p-4 flex flex-col gap-8 animate-pulse">
+      <div className="h-10 bg-gray-200 rounded w-1/4 mb-4"></div>
+      <div className="grid grid-cols-4 gap-6">
+        {[...Array(4)].map((_, i) => (
+          <div key={i} className="h-32 bg-gray-200 rounded-xl"></div>
+        ))}
+      </div>
+      <div className="h-96 bg-gray-200 rounded-xl"></div>
+    </div>
+  );
 
   return (
     <div className="max-w-6xl mx-auto p-4 flex flex-col gap-8">

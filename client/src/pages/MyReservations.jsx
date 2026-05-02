@@ -19,7 +19,34 @@ const MyReservations = () => {
     fetchReservations();
   }, []);
 
-  if (loading) return <div className="max-w-4xl mx-auto px-6 p-12 text-center">Loading your reservations...</div>;
+  if (loading) return (
+    <div className="max-w-4xl mx-auto px-6 py-12 animate-pulse">
+      <header className="mb-10">
+        <div className="h-10 bg-gray-200 rounded w-1/3 mb-2"></div>
+        <div className="h-4 bg-gray-200 rounded w-1/4"></div>
+      </header>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {[...Array(4)].map((_, i) => (
+          <div key={i} className="card bg-white p-6 rounded-2xl border shadow-sm h-48">
+             <div className="flex justify-between items-start mb-4">
+               <div className="w-20 h-6 bg-gray-200 rounded-full"></div>
+               <div className="space-y-2">
+                 <div className="w-16 h-4 bg-gray-200 rounded ml-auto"></div>
+                 <div className="w-12 h-6 bg-gray-200 rounded ml-auto"></div>
+               </div>
+             </div>
+             <div className="space-y-2">
+               <div className="h-6 bg-gray-200 rounded w-1/2"></div>
+               <div className="flex gap-4">
+                 <div className="w-20 h-4 bg-gray-200 rounded"></div>
+                 <div className="w-20 h-4 bg-gray-200 rounded"></div>
+               </div>
+             </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 
   return (
     <div className="max-w-4xl mx-auto px-6 py-12">

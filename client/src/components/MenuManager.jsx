@@ -74,7 +74,35 @@ const MenuManager = ({ restaurantId }) => {
     }
   };
 
-  if (loading) return <div className="text-gray-500">Loading menu...</div>;
+  if (loading) return (
+    <div className="space-y-6 animate-pulse">
+      <div className="flex justify-between items-center bg-white/50 backdrop-blur-sm p-4 rounded-2xl border border-gray-100 shadow-sm">
+        <div className="space-y-2">
+          <div className="h-6 bg-gray-200 rounded w-32"></div>
+          <div className="h-3 bg-gray-200 rounded w-24"></div>
+        </div>
+        <div className="h-10 bg-gray-200 rounded w-28"></div>
+      </div>
+      <div className="grid grid-cols-1 gap-4">
+        {[...Array(3)].map((_, i) => (
+          <div key={i} className="card glass p-5 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div className="flex-1 flex items-center gap-6 w-full">
+              <div className="w-20 h-20 bg-gray-200 rounded-xl flex-shrink-0"></div>
+              <div className="flex-1 space-y-2">
+                <div className="h-5 bg-gray-200 rounded w-1/3"></div>
+                <div className="h-4 bg-gray-200 rounded w-full max-w-md"></div>
+                <div className="h-4 bg-gray-200 rounded w-1/4"></div>
+              </div>
+            </div>
+            <div className="flex items-center gap-3 w-full md:w-auto mt-4 md:mt-0">
+              <div className="w-16 h-8 bg-gray-200 rounded"></div>
+              <div className="w-16 h-8 bg-gray-200 rounded"></div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 
   return (
     <div className="space-y-6">

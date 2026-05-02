@@ -26,7 +26,27 @@ const RestaurantMenu = () => {
     fetchRestaurantData();
   }, [id]);
 
-  if (!restaurant) return <p>Loading...</p>;
+  if (!restaurant) return (
+    <div className="max-w-5xl mx-auto my-8 px-6 animate-pulse">
+      <div className="w-full h-64 md:h-80 bg-gray-200 rounded-3xl mb-12"></div>
+      <div className="space-y-8">
+        <div className="h-8 bg-gray-200 rounded w-1/4 mb-4"></div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {[...Array(4)].map((_, i) => (
+            <div key={i} className="flex gap-6 p-4 border rounded-2xl">
+              <div className="w-24 h-24 md:w-32 md:h-32 bg-gray-200 rounded-2xl flex-shrink-0"></div>
+              <div className="flex-1 space-y-3 py-2">
+                <div className="h-4 bg-gray-200 rounded w-3/4"></div>
+                <div className="h-3 bg-gray-200 rounded w-full"></div>
+                <div className="h-3 bg-gray-200 rounded w-5/6"></div>
+                <div className="h-8 bg-gray-200 rounded w-full mt-4"></div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
 
   const categories = [...new Set(menu.map(item => item.category))];
 

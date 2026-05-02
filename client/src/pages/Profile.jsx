@@ -107,7 +107,27 @@ const Profile = () => {
     setShowAddressForm(true);
   };
 
-  if (loading) return <div className="text-center py-20">Loading your profile...</div>;
+  if (loading) return (
+    <div className="max-w-5xl mx-auto px-4 py-12 animate-pulse">
+      <div className="h-10 bg-gray-200 rounded w-1/4 mb-8"></div>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="lg:col-span-1">
+          <div className="card glass p-6 h-96 bg-gray-200"></div>
+        </div>
+        <div className="lg:col-span-2">
+          <div className="flex justify-between items-center mb-6">
+            <div className="h-6 bg-gray-200 rounded w-1/3"></div>
+            <div className="h-10 bg-gray-200 rounded w-24"></div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {[...Array(2)].map((_, i) => (
+              <div key={i} className="card glass p-5 h-40 bg-gray-200"></div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-12">

@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Restaurants = () => {
   const [restaurants, setRestaurants] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
   const navigate = useNavigate();
 
@@ -16,6 +17,8 @@ const Restaurants = () => {
       setRestaurants(response.data);
     } catch (error) {
       console.error('Error fetching restaurants:', error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -49,7 +52,15 @@ const Restaurants = () => {
       </section>
 
       <div className="restaurants-grid">
-        {restaurants.length > 0 ? (
+        {loading ? (
+          [...Array(6)].map((_, i) => (
+            <div key={i} className="card p-4 animate-pulse">
+              <div className="w-full h-48 bg-gray-200 rounded-xl mb-4"></div>
+              <div className="h-6 bg-gray-200 rounded w-3/4 mb-2"></div>
+              <div className="h-4 bg-gray-200 rounded w-1/2"></div>
+            </div>
+          ))
+        ) : restaurants.length > 0 ? (
           restaurants.map(res => (
             <div key={res._id} className="card restaurant-card" onClick={() => navigate(`/restaurant/${res._id}`)}>
               <img src={res.image} alt={res.name} className="mb-4" />

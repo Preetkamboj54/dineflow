@@ -43,7 +43,27 @@ const RestaurantDashboard = () => {
 
   const [activeTab, setActiveTab] = useState('orders');
 
-  if (loading) return <div className="max-w-7xl mx-auto px-4 p-8 text-center py-20 font-medium text-[var(--text-muted)]">Loading your dashboard...</div>;
+  if (loading) return (
+    <div className="max-w-7xl mx-auto px-4 py-8 animate-pulse">
+      <header className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-12">
+        <div className="flex gap-6 items-center w-full">
+          <div className="w-24 h-24 rounded-3xl bg-gray-200"></div>
+          <div className="space-y-3 flex-1">
+            <div className="h-8 bg-gray-200 rounded w-1/3"></div>
+            <div className="h-4 bg-gray-200 rounded w-1/4"></div>
+          </div>
+        </div>
+        <div className="flex items-center gap-3">
+          <div className="w-32 h-8 bg-gray-200 rounded-full"></div>
+          <div className="w-32 h-8 bg-gray-200 rounded-full"></div>
+        </div>
+      </header>
+      <div className="flex flex-wrap gap-2 mb-8 bg-gray-50 p-1.5 rounded-2xl w-fit">
+        {[...Array(4)].map((_, i) => <div key={i} className="w-32 h-12 bg-gray-200 rounded-xl"></div>)}
+      </div>
+      <div className="h-96 bg-gray-200 rounded-3xl w-full"></div>
+    </div>
+  );
   if (!restaurant) return <div className="max-w-7xl mx-auto px-4 p-8 text-center py-20 text-red-500 font-black">Restaurant details not found. Please contact support.</div>;
 
   const tabs = [

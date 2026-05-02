@@ -8,6 +8,7 @@ const Checkout = () => {
   const navigate = useNavigate();
   const [paymentMethod, setPaymentMethod] = useState('COD');
   const [loading, setLoading] = useState(false);
+  const [loadingAddresses, setLoadingAddresses] = useState(true);
   const [addresses, setAddresses] = useState([]);
   const [selectedAddress, setSelectedAddress] = useState(null);
   const [showNewAddressForm, setShowNewAddressForm] = useState(false);
@@ -33,6 +34,8 @@ const Checkout = () => {
       else if (res.data.addresses?.length > 0) setSelectedAddress(res.data.addresses[0]);
     } catch (err) {
       console.error('Failed to fetch addresses', err);
+    } finally {
+      setLoadingAddresses(false);
     }
   };
 
@@ -118,7 +121,15 @@ const Checkout = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {addresses.map(addr => (
+              {loadingAddresses ? (
+                [...Array(2)].map((_, i) => (
+                  <div key={i} className="card p-5 h-32 bg-gray-200 animate-pulse rounded-2xl border"></div>
+                ))
+              ) : addresses.length === 0 ? (
+                <div className="col-span-full py-8 text-center bg-gray-50 rounded-2xl border border-dashed border-gray-200">
+                  <p className="text-gray-400 font-medium">No saved addresses found. Please add one to continue.</p>
+                </div>
+              ) : addresses.map(addr => (
                 <div 
                   key={addr._id} 
                   onClick={() => setSelectedAddress(addr)}

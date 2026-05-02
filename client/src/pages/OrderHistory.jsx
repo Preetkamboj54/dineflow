@@ -31,7 +31,31 @@ const OrderHistory = () => {
     }
   };
 
-  if (loading) return <div className="max-w-4xl mx-auto my-8 px-6 p-8 text-center">Loading your history...</div>;
+  if (loading) return (
+    <div className="max-w-4xl mx-auto my-8 px-6">
+      <header className="mb-8 animate-pulse">
+        <div className="h-10 bg-gray-200 rounded w-1/3 mb-2"></div>
+        <div className="h-4 bg-gray-200 rounded w-1/4"></div>
+      </header>
+      <div className="flex flex-col gap-4 animate-pulse">
+        {[...Array(4)].map((_, i) => (
+          <div key={i} className="card flex justify-between items-center p-6 border rounded-2xl">
+            <div className="flex flex-col space-y-2">
+              <div className="h-5 bg-gray-200 rounded w-48"></div>
+              <div className="h-3 bg-gray-200 rounded w-32"></div>
+            </div>
+            <div className="flex items-center gap-6">
+              <div className="flex flex-col items-end space-y-2">
+                <div className="h-6 bg-gray-200 rounded w-16"></div>
+                <div className="h-3 bg-gray-200 rounded w-12"></div>
+              </div>
+              <div className="w-20 h-6 bg-gray-200 rounded-full"></div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 
   return (
     <div className="max-w-4xl mx-auto my-8 px-6">
