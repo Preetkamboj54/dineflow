@@ -33,20 +33,35 @@ const Restaurants = () => {
 
   return (
     <div className="max-w-[1200px] mx-auto my-8 px-6">
-      <section className="text-center py-12">
-        <h1 className="text-5xl font-extrabold mb-4">Discover Local Flavors</h1>
-        <p className="text-xl text-[var(--text-muted)] mb-8">Order from the best restaurants in town</p>
+      <section className="relative text-center py-24 mb-12 rounded-3xl overflow-hidden shadow-2xl flex items-center justify-center min-h-[400px]">
+        {/* Background Video */}
+        <video 
+          autoPlay 
+          loop 
+          muted 
+          playsInline 
+          className="absolute inset-0 w-full h-full object-cover z-0"
+        >
+          {/* Using a high quality, free food video from Pexels (commercial use allowed) */}
+          <source src="/videoplayback.mp4" type="video/mp4" />
+        </video>
+        {/* Overlay to ensure text readability */}
+        <div className="absolute inset-0 bg-black/50 z-10"></div>
         
-        <div className="max-w-xl mx-auto">
-          <form onSubmit={handleSearch} className="flex gap-2">
+        {/* Content */}
+        <div className="relative z-20 w-full max-w-xl mx-auto px-4">
+          <h1 className="text-5xl md:text-6xl font-extrabold mb-4 text-white drop-shadow-lg tracking-tight">Discover Local Flavors</h1>
+          <p className="text-xl text-white/90 mb-8 drop-shadow font-medium">Order from the best restaurants in town</p>
+          
+          <form onSubmit={handleSearch} className="flex gap-2 bg-white/10 backdrop-blur-md p-2 rounded-2xl shadow-2xl border border-white/20">
             <input 
               type="text" 
               placeholder="Cuisine, dish, or restaurant..." 
-              className="flex-1 shadow-sm"
+              className="flex-1 shadow-none border-none focus:ring-0 px-4 bg-white rounded-xl text-gray-900"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
-            <button type="submit" className="btn-primary">Search</button>
+            <button type="submit" className="btn-primary px-8 rounded-xl">Search</button>
           </form>
         </div>
       </section>
