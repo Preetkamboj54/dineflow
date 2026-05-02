@@ -19,3 +19,4 @@ See: .planning/PROJECT.md (updated 2026-04-19)
 
 ### Roadmap Evolution
 - Phase 9 added: Tailwind CSS Migration (replace style.css with Tailwind utility classes across all components)
+- Phase 10 added: Menu Item Dietary Options (Veg/Non-Veg/Egg selection)

@@ -1,7 +1,11 @@
 import axios from 'axios';
 
+const baseURL = window.location.hostname === 'localhost'
+  ? 'http://localhost:5000'
+  : 'https://dirflow.onrender.com';
+
 const api = axios.create({
-  baseURL: 'https://dirflow.onrender.com'
+  baseURL
 });
 
 api.interceptors.request.use(config => {

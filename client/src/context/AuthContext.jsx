@@ -4,7 +4,17 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem('token'));
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(() => {
+    const savedToken = localStorage.getItem('token');
+    if (savedToken) {
+      try {
+        return JSON.parse(atob(savedToken.split('.')[1]));
+      } catch (e) {
+        return null;
+      }
+    }
+    return null;
+  });
 
   useEffect(() => {
     if (token) {

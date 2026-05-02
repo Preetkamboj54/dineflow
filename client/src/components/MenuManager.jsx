@@ -6,7 +6,7 @@ const MenuManager = ({ restaurantId }) => {
   const [loading, setLoading] = useState(true);
   const [editingId, setEditingId] = useState(null);
   const [editForm, setEditForm] = useState({});
-  const [newForm, setNewForm] = useState({ name: '', description: '', price: '', category: '', image: '', isAvailable: true });
+  const [newForm, setNewForm] = useState({ name: '', description: '', price: '', category: '', image: '', isAvailable: true, dietaryPreference: 'Veg' });
   const [isAdding, setIsAdding] = useState(false);
 
   useEffect(() => {
@@ -65,7 +65,7 @@ const MenuManager = ({ restaurantId }) => {
     e.preventDefault();
     try {
       await api.post(`/api/restaurants/${restaurantId}/menu`, newForm);
-      setNewForm({ name: '', description: '', price: '', category: '', image: '', isAvailable: true });
+      setNewForm({ name: '', description: '', price: '', category: '', image: '', isAvailable: true, dietaryPreference: 'Veg' });
       setIsAdding(false);
       fetchMenu();
     } catch (err) {
@@ -113,6 +113,14 @@ const MenuManager = ({ restaurantId }) => {
               <label>Image URL</label>
               <input name="image" value={newForm.image} onChange={handleNewChange} placeholder="https://images.unsplash.com/..." />
             </div>
+            <div className="form-group">
+              <label>Dietary Preference</label>
+              <select name="dietaryPreference" value={newForm.dietaryPreference} onChange={handleNewChange} className="w-full border p-2 rounded-lg text-sm bg-white">
+                <option value="Veg">Veg</option>
+                <option value="Non-Veg">Non-Veg</option>
+                <option value="Egg">Egg</option>
+              </select>
+            </div>
           </div>
           
           <div className="form-group mt-6">
@@ -140,6 +148,11 @@ const MenuManager = ({ restaurantId }) => {
                   <input name="name" value={editForm.name} onChange={handleEditChange} className="border p-2 rounded-lg text-sm w-full" placeholder="Name" />
                   <input type="number" name="price" value={editForm.price} onChange={handleEditChange} className="border p-2 rounded-lg text-sm w-full" placeholder="Price" />
                   <input name="category" value={editForm.category} onChange={handleEditChange} className="border p-2 rounded-lg text-sm w-full" placeholder="Category" />
+                  <select name="dietaryPreference" value={editForm.dietaryPreference || 'Veg'} onChange={handleEditChange} className="border p-2 rounded-lg text-sm w-full bg-white">
+                    <option value="Veg">Veg</option>
+                    <option value="Non-Veg">Non-Veg</option>
+                    <option value="Egg">Egg</option>
+                  </select>
                 </div>
                 <input name="image" value={editForm.image} onChange={handleEditChange} placeholder="Image URL" className="border p-2 rounded-lg text-sm w-full" />
                 <textarea name="description" value={editForm.description} onChange={handleEditChange} className="border p-2 rounded-lg text-sm w-full" placeholder="Description" />
@@ -160,7 +173,12 @@ const MenuManager = ({ restaurantId }) => {
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex flex-wrap items-center gap-3 mb-1">
-                    <h4 className="font-black text-lg text-gray-900 truncate">{item.name}</h4>
+                    <h4 className="font-black text-lg text-gray-900 truncate flex items-center gap-2">
+                      {item.dietaryPreference === 'Veg' && <span className="inline-flex items-center justify-center w-4 h-4 border-2 border-green-600 rounded-sm" title="Veg"><span className="w-1.5 h-1.5 bg-green-600 rounded-full"></span></span>}
+                      {item.dietaryPreference === 'Non-Veg' && <span className="inline-flex items-center justify-center w-4 h-4 border-2 border-red-600 rounded-sm" title="Non-Veg"><span className="w-1.5 h-1.5 bg-red-600 rounded-full"></span></span>}
+                      {item.dietaryPreference === 'Egg' && <span className="inline-flex items-center justify-center w-4 h-4 border-2 border-orange-500 rounded-sm" title="Egg"><span className="w-1.5 h-1.5 bg-orange-500 rounded-full"></span></span>}
+                      {item.name}
+                    </h4>
                     <span className="bg-indigo-50 text-indigo-700 text-[10px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full border border-indigo-100">
                       {item.category}
                     </span>

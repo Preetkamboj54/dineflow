@@ -68,7 +68,7 @@ exports.searchFoodItems = async (req, res) => {
 exports.addMenuItem = async (req, res) => {
   try {
     const restaurantId = req.params.id;
-    const { name, description, price, category, image, isAvailable } = req.body;
+    const { name, description, price, category, image, isAvailable, dietaryPreference } = req.body;
 
     const newItem = new MenuItem({
       restaurantId,
@@ -77,7 +77,8 @@ exports.addMenuItem = async (req, res) => {
       price,
       category,
       image,
-      isAvailable
+      isAvailable,
+      dietaryPreference
     });
 
     const savedItem = await newItem.save();
@@ -90,11 +91,11 @@ exports.addMenuItem = async (req, res) => {
 exports.updateMenuItem = async (req, res) => {
   try {
     const { id, itemId } = req.params;
-    const { name, description, price, category, image, isAvailable } = req.body;
+    const { name, description, price, category, image, isAvailable, dietaryPreference } = req.body;
 
     const updatedItem = await MenuItem.findOneAndUpdate(
       { _id: itemId, restaurantId: id },
-      { name, description, price, category, image, isAvailable },
+      { name, description, price, category, image, isAvailable, dietaryPreference },
       { new: true, runValidators: true }
     );
 

@@ -45,6 +45,11 @@ const menuItemSchema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
+  dietaryPreference: {
+    type: String,
+    enum: ['Veg', 'Non-Veg', 'Egg'],
+    default: 'Veg',
+  },
 }, { timestamps: true });
 
 module.exports = mongoose.model('MenuItem', menuItemSchema);

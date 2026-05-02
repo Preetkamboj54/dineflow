@@ -202,7 +202,12 @@ const Checkout = () => {
             <div className="space-y-4 mb-8">
               {cartItems.map(item => (
                 <div key={item.menuItemId} className="flex justify-between text-sm">
-                  <span className="text-[var(--text-muted)]">{item.name} <span className="font-bold text-[var(--text-main)]">x{item.quantity}</span></span>
+                  <span className="text-[var(--text-muted)] flex items-center gap-2">
+                    {item.dietaryPreference === 'Veg' && <span className="inline-flex items-center justify-center w-3.5 h-3.5 border-2 border-green-600 rounded-sm" title="Veg"><span className="w-1.5 h-1.5 bg-green-600 rounded-full"></span></span>}
+                    {item.dietaryPreference === 'Non-Veg' && <span className="inline-flex items-center justify-center w-3.5 h-3.5 border-2 border-red-600 rounded-sm" title="Non-Veg"><span className="w-1.5 h-1.5 bg-red-600 rounded-full"></span></span>}
+                    {item.dietaryPreference === 'Egg' && <span className="inline-flex items-center justify-center w-3.5 h-3.5 border-2 border-orange-500 rounded-sm" title="Egg"><span className="w-1.5 h-1.5 bg-orange-500 rounded-full"></span></span>}
+                    {item.name} <span className="font-bold text-[var(--text-main)]">x{item.quantity}</span>
+                  </span>
                   <span className="font-bold">₹{(item.price * item.quantity).toFixed(2)}</span>
                 </div>
               ))}

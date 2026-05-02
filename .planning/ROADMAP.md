@@ -15,6 +15,7 @@ DineFlow v1.0 development is structured in 4 phases, starting from foundational 
 - [ ] **Phase 7: Rating & Review System** - Order and dish-wise ratings with average calculations
 - [ ] **Phase 8: User Address & Profile Management** - Multi-address support and comprehensive profile editing
 - [ ] **Phase 9: Tailwind CSS Migration** - Replace style.css with Tailwind CSS utility classes across all components
+- [x] **Phase 10: Menu Item Dietary Options** - Add option to select veg/non-veg for menu items
 
 ## Phase Details
 
@@ -116,6 +117,13 @@ Plans:
   3. UI appearance and responsiveness are preserved or improved after migration.
   4. No unused CSS classes remain in `style.css`.
 
+### Phase 10: Menu Item Dietary Options
+**Goal**: Add an option to select Veg/Non-Veg for a restaurant menu items.
+**Depends on**: Phase 3 (Restaurant Dashboard)
+**Success Criteria**:
+  1. Restaurant can specify dietary options (Veg/Non-Veg) when adding or editing a menu item.
+  2. Customer can see the dietary option (Veg/Non-Veg indicator) on the menu item.
+
 ## Progress
 
 **Execution Order:**
@@ -132,3 +140,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | 7. Rating & Review System | 0/1 | In Progress | - |
 | 8. User Address & Profile Management | 0/1 | Planned | - |
 | 9. Tailwind CSS Migration | 3/3 | Planned (Ready to execute) | - |
+| 10. Menu Item Dietary Options | 1/1 | Complete | 2026-05-02 |

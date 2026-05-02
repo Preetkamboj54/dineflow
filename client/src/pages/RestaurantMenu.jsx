@@ -74,7 +74,12 @@ const RestaurantMenu = () => {
                     <div className="flex-1 min-w-0">
                       <div className="flex justify-between items-start mb-2">
                         <div>
-                          <h4 className="text-lg font-bold truncate pr-2">{item.name}</h4>
+                          <h4 className="text-lg font-bold truncate pr-2 flex items-center gap-2">
+                            {item.dietaryPreference === 'Veg' && <span className="inline-flex items-center justify-center w-3.5 h-3.5 border-2 border-green-600 rounded-sm" title="Veg"><span className="w-1.5 h-1.5 bg-green-600 rounded-full"></span></span>}
+                            {item.dietaryPreference === 'Non-Veg' && <span className="inline-flex items-center justify-center w-3.5 h-3.5 border-2 border-red-600 rounded-sm" title="Non-Veg"><span className="w-1.5 h-1.5 bg-red-600 rounded-full"></span></span>}
+                            {item.dietaryPreference === 'Egg' && <span className="inline-flex items-center justify-center w-3.5 h-3.5 border-2 border-orange-500 rounded-sm" title="Egg"><span className="w-1.5 h-1.5 bg-orange-500 rounded-full"></span></span>}
+                            {item.name}
+                          </h4>
                           {item.rating > 0 && (
                             <div className="flex items-center gap-1 text-amber-500 text-xs">
                               <span>★</span>

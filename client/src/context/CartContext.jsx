@@ -48,7 +48,7 @@ export const CartProvider = ({ children }) => {
             : item
         );
       }
-      return [...prevItems, { menuItemId: menuItem._id, name: menuItem.name, price: menuItem.price, quantity }];
+      return [...prevItems, { menuItemId: menuItem._id, name: menuItem.name, price: menuItem.price, quantity, dietaryPreference: menuItem.dietaryPreference }];
     });
     
     if (rid) {
